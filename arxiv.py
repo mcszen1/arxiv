@@ -28,16 +28,16 @@ def scrape_ai(start_date, end_date):
 
 def main():
     st.title("ArXiv Scraper de IA")
-
+    
     # Criação de input para as datas
-    start_date = st.date_input("Data de início", datetime.today())
-    end_date = st.date_input("Data de término", datetime.today())
+    start_date = st.date_input("Data de início", datetime.today()).strftime("%Y-%m-%d")
+    end_date = st.date_input("Data de término", datetime.today()).strftime("%Y-%m-%d")
 
     # Botão para iniciar o scraping
     if st.button("Iniciar Scraping"):
         if start_date <= end_date:
             # Chama a função scrape_ai e captura o DataFrame retornado
-            df = scrape_ai(start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d"))
+            df = scrape_ai(start_date, end_date)
 
             # Verifica se o DataFrame foi retornado e possui dados
             if df is not None and not df.empty:
